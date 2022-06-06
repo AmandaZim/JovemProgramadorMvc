@@ -21,5 +21,6 @@ namespace JovemProgramadorMvc2.Data
         }
 
         public DbSet<AlunoModel> Aluno { get; set; }
+        public DbSet<EnderecoModel> EnderecoAluno { get; set; }
     }
 }

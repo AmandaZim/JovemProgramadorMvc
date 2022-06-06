@@ -27,11 +27,11 @@ namespace JovemProgramadorMvc2.Controllers
         {
             List<AlunoModel> aluno = new();
 
-            if(filtroAluno.Idade > 0)
+            if (filtroAluno.Idade > 0)
             {
                 aluno = _alunorepositorio.FiltroIdade(filtroAluno.Idade, filtroAluno.Operacao);
             }
-            if(filtroAluno.Nome != null)
+            if (filtroAluno.Nome != null)
             {
                 aluno = _alunorepositorio.FiltroNome(filtroAluno.Nome);
             }
@@ -46,7 +46,7 @@ namespace JovemProgramadorMvc2.Controllers
 
         public IActionResult Adicionar()
         {
-                return View();
+            return View();
         }
 
         public IActionResult Mensagem()
@@ -55,7 +55,7 @@ namespace JovemProgramadorMvc2.Controllers
         }
 
         public async Task<IActionResult> BuscarEndereco(string cep)
-            {
+        {
             EnderecoModel enderecoModel = new();
 
             try
@@ -64,7 +64,7 @@ namespace JovemProgramadorMvc2.Controllers
 
                 using var client = new HttpClient();
 
-                var result = await client.GetAsync(_configuration.GetSection("ApiCep") ["BaseUrl"] + cep + "/json");
+                var result = await client.GetAsync(_configuration.GetSection("ApiCep")["BaseUrl"] + cep + "/json");
 
                 if (result.IsSuccessStatusCode)
                 {
@@ -102,7 +102,7 @@ namespace JovemProgramadorMvc2.Controllers
         public IActionResult Inserir(AlunoModel aluno)
         {
             var retorno = _alunorepositorio.Inserir(aluno);
-            if(retorno != null)
+            if (retorno != null)
             {
                 TempData["Mensagem2"] = "Dados gravados com sucesso";
             }
@@ -125,8 +125,8 @@ namespace JovemProgramadorMvc2.Controllers
         public IActionResult Excluir(int Id)
         {
             var retorno = _alunorepositorio.Excluir(Id);
-           
-            if(retorno)
+
+            if (retorno)
             {
                 TempData["Mensagem3"] = "Aluno excluído com sucesso";
             }
@@ -139,10 +139,11 @@ namespace JovemProgramadorMvc2.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> BuscarEndereco(AlunoModel aluno)
-        {
-            var retorno = _alunorepositorio.BuscarId(aluno.Id);
-            aluno = retorno;
-            EnderecoModel enderecoModel = new();
-        }
+        //public async Task<IActionResult> BuscarEndereco(AlunoModel aluno)
+        //{
+        //    var retorno = _alunorepositorio.BuscarId(aluno.Id);
+        //    aluno = retorno;
+        //    EnderecoModel enderecoModel = new();
+        //}
+    }
 }
