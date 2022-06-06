@@ -93,8 +93,8 @@ namespace JovemProgramadorMvc2.Data.Repositorio
         {
             _bancoContexto.EnderecoAluno.Add(endereco);
             _bancoContexto.SaveChanges();
+            return endereco;
      
-
         }
 
     }
